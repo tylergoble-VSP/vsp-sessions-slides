@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Victory Square Partners — Technology Transformation | Sessions March 11, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-lightest: #97f377;
+      --green-light: #7bd15d;
+      --green: #65a74e;
+      --green-dark: #4f813e;
+      --green-darkest: #355629;
+      --yellow-lightest: #fff5c2;
+      --yellow-light: #ffef96;
+      --yellow: #ffe86b;
+      --navy-light: #59709c;
+      --navy: #46597c;
+      --navy-dark: #344566;
+      --navy-darkest: #2b374d;
+      --white: #ffffff;
+      --gray-dark: #3f3f3f;
+      --black: #0c0c0c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { height: 100%; overflow: hidden; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--white);
+      background: linear-gradient(145deg, #1a2338 0%, var(--navy-darkest) 35%, var(--navy-dark) 70%, #3d5a80 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      height: 100vh;
+      padding: 20px 40px;
+      position: relative;
+    }
+
+    /* ─── Animated Background ─────────────────────────────────────── */
+    .bg-glow {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(80px);
+    }
+    .bg-glow.g1 { width: 600px; height: 600px; background: var(--yellow); opacity: 0.07; top: -200px; right: -100px; }
+    .bg-glow.g2 { width: 500px; height: 500px; background: var(--green); opacity: 0.09; bottom: -180px; left: -100px; }
+    .bg-glow.g3 { width: 350px; height: 350px; background: var(--green-lightest); opacity: 0.05; top: 40%; left: 50%; }
+    .bg-glow.g4 { width: 250px; height: 250px; background: var(--yellow); opacity: 0.04; bottom: 20%; right: 15%; }
+
+    /* Grid pattern overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* ─── Main Container ──────────────────────────────────────────── */
+    .slide {
+      width: 100%;
+      max-width: 1280px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Header Bar ──────────────────────────────────────────────── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .vsp-diamond {
+      width: 44px;
+      height: 44px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .vsp-diamond .layer {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    .vsp-diamond .layer-navy { width: 44px; height: 44px; background: var(--navy-darkest); border: 2px solid var(--navy-light); }
+    .vsp-diamond .layer-yellow { width: 32px; height: 32px; background: var(--yellow); }
+    .vsp-diamond .layer-green { width: 20px; height: 20px; background: var(--green); }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .event-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      background: rgba(255, 232, 107, 0.08);
+      border: 1px solid rgba(255, 232, 107, 0.2);
+      padding: 6px 16px;
+      border-radius: 100px;
+    }
+
+    /* ─── Hero Title ──────────────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .hero .kicker {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-lightest);
+      margin-bottom: 6px;
+    }
+
+    .hero h1 {
+      font-size: clamp(24px, 3.5vw, 42px);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 6px;
+    }
+
+    .hero h1 .glow {
+      background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-light) 50%, var(--green-lightest) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .subtitle {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+
+    /* ─── Two-Step Offer Cards ────────────────────────────────────── */
+    .offer-row {
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      align-items: stretch;
+      margin-bottom: 0;
+      gap: 0;
+      align-items: start;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 14px 16px 12px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    /* Card glow accents */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .card.advisory::before {
+      background: linear-gradient(90deg, var(--yellow), var(--yellow-light));
+    }
+
+    .card.implementation::before {
+      background: linear-gradient(90deg, var(--green), var(--green-lightest));
+    }
+
+    .step-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy-darkest);
+    }
+
+    .advisory .step-num { background: var(--yellow); }
+    .implementation .step-num { background: var(--green-lightest); }
+
+    .step-tag span {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .advisory .step-tag span { color: var(--yellow); }
+    .implementation .step-tag span { color: var(--green-lightest); }
+
+    .card h2 {
+      font-size: clamp(16px, 2vw, 21px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 4px;
+    }
+
+    .card .desc {
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+    }
+
+    .card .highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .card .highlights li {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.35;
+    }
+
+    .card .highlights li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      transform: rotate(45deg);
+    }
+
+    .advisory .highlights li::before { background: var(--yellow); opacity: 0.5; }
+    .implementation .highlights li::before { background: var(--green-lightest); opacity: 0.5; }
+
+    /* ─── Arrow Connector ─────────────────────────────────────────── */
+    .arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arrow svg {
+      width: 32px;
+      height: 32px;
+      opacity: 0.4;
+    }
+
+    .arrow .then {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-top: 4px;
+    }
+
+    /* ─── Three Outcome Paths ─────────────────────────────────────── */
+    .outcomes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .outcome {
+      text-align: center;
+      padding: 10px 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      transition: border-color 0.3s ease;
+    }
+
+    .outcome:hover { border-color: rgba(255,255,255,0.14); }
+
+    .outcome-icon {
+      font-size: 18px;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .outcome h4 {
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .outcome.o1 h4 { color: var(--yellow); }
+    .outcome.o2 h4 { color: var(--green-lightest); }
+    .outcome.o3 h4 { color: var(--white); }
+
+    .outcome p {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.35;
+    }
+
+    /* ─── CTA + QR Codes ──────────────────────────────────────────── */
+    .cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-shrink: 0;
+    }
+
+    .qr-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 8px 14px 8px 8px;
+      transition: border-color 0.3s ease;
+    }
+
+    .qr-card:hover { border-color: rgba(255,255,255,0.16); }
+
+    .qr-box {
+      width: 68px;
+      height: 68px;
+      background: var(--white);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .qr-box span {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--navy-darkest);
+      text-align: center;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .qr-meta { display: flex; flex-direction: column; }
+
+    .qr-name {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 1px;
+    }
+
+    .qr-role {
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 8px;
+    }
+
+    .qr-btn {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 6px;
+      display: inline-block;
+      color: var(--navy-darkest);
+    }
+
+    .qr-card.paul .qr-btn { background: var(--yellow); }
+    .qr-card.tyler .qr-btn { background: var(--green-lightest); }
+
+    .cta-or {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────────────── */
+    .foot {
+      text-align: center;
+      margin-top: 12px;
+      flex-shrink: 0;
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      font-weight: 500;
+    }
+
+    /* ─── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      body { padding: 20px; }
+      .offer-row { grid-template-columns: 1fr; gap: 16px; }
+      .arrow { transform: rotate(90deg); padding: 8px 0; }
+      .outcomes { grid-template-columns: 1fr; }
+      .cta-row { flex-direction: column; gap: 20px; }
+      .header { flex-direction: column; gap: 12px; align-items: flex-start; }
+    }
+
+    @media print {
+      body { background: #1a2338 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-glow g1"></div>
+  <div class="bg-glow g2"></div>
+  <div class="bg-glow g3"></div>
+  <div class="bg-glow g4"></div>
+
+  <div class="slide">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <div class="vsp-diamond">
+          <div class="layer layer-navy"></div>
+          <div class="layer layer-yellow"></div>
+          <div class="layer layer-green"></div>
+        </div>
+        <div class="brand-name">Victory Square Partners</div>
+      </div>
+      <div class="event-badge">Sessions &mdash; March 11, 2026</div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="kicker">Technology Transformation Partners</div>
+      <h1>See Clearly. <span class="glow">Move Decisively.</span></h1>
+      <p class="subtitle">Two phases to unlock your organization's full technology potential</p>
+    </div>
+
+    <!-- Two-Step Offer -->
+    <div class="offer-row">
+
+      <div class="card advisory">
+        <div class="step-tag">
+          <div class="step-num">1</div>
+          <span>Advisory</span>
+        </div>
+        <h2>Discovery &amp; Strategy</h2>
+        <p class="desc">We work alongside your leadership to understand where you are, where you need to go, and what it takes to get there &mdash; then we hand you the blueprint.</p>
+        <ul class="highlights">
+          <li>Organizational &amp; technology assessment</li>
+          <li>Opportunity mapping &amp; gap analysis</li>
+          <li>Actionable transformation strategy</li>
+          <li>Business case &amp; investment roadmap</li>
+        </ul>
+      </div>
+
+      <div class="arrow">
+        <svg viewBox="0 0 48 48" fill="none">
+          <path d="M8 24H40M40 24L30 16M40 24L30 32" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="then">Then</div>
+      </div>
+
+      <div class="card implementation">
+        <div class="step-tag">
+          <div class="step-num">2</div>
+          <span>Implementation</span>
+        </div>
+        <h2>Execution &amp; Delivery</h2>
+        <p class="desc">We bring the team, the tools, and the methodology to turn strategy into shipped software &mdash; at any scale, on any timeline.</p>
+        <ul class="highlights">
+          <li>Flexible team structures &mdash; from embedded to fully managed</li>
+          <li>Modern engineering with AI-native tooling</li>
+          <li>Continuous delivery &amp; measurable outcomes</li>
+          <li>Knowledge transfer or long-term partnership</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Three Outcome Paths -->
+    <div class="outcomes">
+      <div class="outcome o1">
+        <span class="outcome-icon" aria-hidden="true">&#9650;</span>
+        <h4>Do More</h4>
+        <p>Amplify your team's output without adding headcount</p>
+      </div>
+      <div class="outcome o2">
+        <span class="outcome-icon" aria-hidden="true">&#9660;</span>
+        <h4>Spend Less</h4>
+        <p>Achieve the same results with a leaner, smarter operation</p>
+      </div>
+      <div class="outcome o3">
+        <span class="outcome-icon" aria-hidden="true">&#11088;</span>
+        <h4>Think Bigger</h4>
+        <p>Tackle the projects you've been putting off &mdash; debt, rewrites, new products</p>
+      </div>
+    </div>
+
+    <!-- CTA + QR Codes -->
+    <div class="cta-row">
+      <div class="qr-card paul">
+        <div class="qr-box"><span>QR Code<br/>Paul</span></div>
+        <div class="qr-meta">
+          <div class="qr-name">Paul Doman</div>
+          <div class="qr-role">Managing Partner</div>
+          <div class="qr-btn">Book a Call</div>
+        </div>
+      </div>
+
+      <div class="cta-or">or</div>
+
+      <div class="qr-card tyler">
+        <div class="qr-box"><span>QR Code<br/>Tyler</span></div>
+        <div class="qr-meta">
+          <div class="qr-name">Tyler Goble</div>
+          <div class="qr-role">Client Partner</div>
+          <div class="qr-btn">Book a Call</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">victorysquarepartners.com</div>
+
+  </div>
+
+</body>
+</html>
